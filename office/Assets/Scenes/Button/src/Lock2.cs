@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Lock2 : MonoBehaviour
 {
-    public int buttonAmount = 2;
-    public int sevenSegmentAmount = 2;
-    public MyButton2[] accumulateButtons = new MyButton2[2];
+    public int buttonAmount = 3;
+    public int sevenSegmentAmount = 3;
+    public MyButton2[] accumulateButtons = new MyButton2[3];
     public MyButton2 enterButton;
     public MyButton2 clearButton;
-    public SevenSegment[] seven = new SevenSegment[2];
-    public int[] answerNumber = new int[2];
-    private int[] clickedButtonNumber = new int[2];
+    public SevenSegment[] seven = new SevenSegment[3];
+    public int[] answerNumber = new int[3];
+    private int[] clickedButtonNumber = new int[3];
     private bool answerCorrect = false;
 
-    public GameObject obstacle;
-
+    //public GameObject obstacle;
+    public GameObject drawer_move;
+    public GameObject drawer_noMove;
     // Start is called before the first frame update
     void Start()
     {
+        drawer_move.SetActive(false);
         for (int i = 0; i < sevenSegmentAmount; i++)
         {
             clickedButtonNumber[i] = 0;
@@ -72,7 +74,9 @@ public class Lock2 : MonoBehaviour
             }
             enterButton.ChangeButtonColor_yellow();
             clearButton.ChangeButtonColor_yellow();
-            obstacle.SetActive(false);
+            //obstacle.SetActive(false);
+            drawer_move.SetActive(true);
+            drawer_noMove.SetActive(false);
         }
         else
         {
