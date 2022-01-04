@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MyVideo : MonoBehaviour
 {
     public VideoPlayer vPlayer;
+    public string NextScene;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class MyVideo : MonoBehaviour
     void EndReached(VideoPlayer vPlayer)
     {
         Debug.Log("End reached!");
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(NextScene);
     }
 
     // Update is called once per frame

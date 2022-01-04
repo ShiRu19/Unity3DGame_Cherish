@@ -11,6 +11,7 @@ public class Lock2 : MonoBehaviour
     public MyButton2 clearButton;
     public SevenSegment[] seven = new SevenSegment[3];
     public int[] answerNumber = new int[3];
+    public GameObject door;
     private int[] clickedButtonNumber = new int[3];
     private bool answerCorrect = false;
 
@@ -40,14 +41,14 @@ public class Lock2 : MonoBehaviour
         //    clickedButtonNumber[1] = clickedButtonNumber[1] % 10;
         //}
         //if (Input.GetKeyDown(KeyCode.Return)) { checkAnswer(); }
-        
+
     }
-    public void ClickButton(MyButton2 NbButton,int index)
+    public void ClickButton(MyButton2 NbButton, int index)
     {
-        if(answerCorrect == false)
+        if (answerCorrect == false)
         {
             NbButton.ChangeButtonColor();
-            seven[index-1].SetSegment(++clickedButtonNumber[index-1] % 10);
+            seven[index - 1].SetSegment(++clickedButtonNumber[index - 1] % 10);
             Debug.Log(clickedButtonNumber[0] + "," + clickedButtonNumber[1]);
         }
     }
@@ -77,6 +78,7 @@ public class Lock2 : MonoBehaviour
             //obstacle.SetActive(false);
             drawer_move.SetActive(true);
             drawer_noMove.SetActive(false);
+            door.SetActive(false);
         }
         else
         {

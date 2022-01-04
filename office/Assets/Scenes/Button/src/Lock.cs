@@ -13,8 +13,9 @@ public class Lock : MonoBehaviour
 
     public int[] answerNumber = new int[10];
     public GameObject artWork;
+    public GameObject Move_wall;
     public GameObject letter;
-    //public GameObject circlePlan;
+    public GameObject circlePlan;
     private int[] clickedButtonNumber = new int[10];
     private int clickedButtonNumber_index = 0;
     private bool answerCorrect = false;
@@ -22,11 +23,12 @@ public class Lock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(MyButton btn in numberButton){
+        foreach (MyButton btn in numberButton)
+        {
             btn.Lock = this;
         }
         letter.SetActive(false);
-        //circlePlan.SetActive(false);
+        circlePlan.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,7 +69,7 @@ public class Lock : MonoBehaviour
     }
     public void ClickButton(MyButton NbButton, int n)
     {
-        if(answerCorrect == false && clickedButtonNumber_index != sevenSegmentAmount)
+        if (answerCorrect == false && clickedButtonNumber_index != sevenSegmentAmount)
         {
             clickedButtonNumber[clickedButtonNumber_index] = n;
             NbButton.ChangeButtonColor();
@@ -122,7 +124,8 @@ public class Lock : MonoBehaviour
 
             float step = 10 * Time.deltaTime;
             artWork.transform.localPosition = Vector3.MoveTowards(artWork.transform.localPosition, new Vector3(0, 0, 0), step);
-            //circlePlan.SetActive(true);
+            Move_wall.SetActive(false);
+            circlePlan.SetActive(true);
             letter.SetActive(true);
             //artWork.transform.position = new Vector3(artWork.transform.position.x, artWork.transform.localPosition.y + 0.096, artWork.transform.position.z);
             //enterButton.ChangeButtonColor_yellow();
