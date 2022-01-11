@@ -8,6 +8,7 @@ public class videoPlay : MonoBehaviour
 {
     public GameObject letter;
     public VideoPlayer video_play;
+    public AudioSource originalBGM;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,10 @@ public class videoPlay : MonoBehaviour
         {
             video_play.enabled = true;
             video_play.Play();
+            if (originalBGM)
+            {
+                originalBGM.Stop();
+            }
         }
     }
 }

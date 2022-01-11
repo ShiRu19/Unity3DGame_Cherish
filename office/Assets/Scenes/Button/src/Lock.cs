@@ -16,6 +16,7 @@ public class Lock : MonoBehaviour
     public GameObject Move_wall;
     public GameObject letter;
     public GameObject circlePlan;
+    public AudioSource machineSound;
     private int[] clickedButtonNumber = new int[10];
     private int clickedButtonNumber_index = 0;
     private bool answerCorrect = false;
@@ -127,6 +128,7 @@ public class Lock : MonoBehaviour
             Move_wall.SetActive(false);
             circlePlan.SetActive(true);
             letter.SetActive(true);
+            machineSound.Play();
             //artWork.transform.position = new Vector3(artWork.transform.position.x, artWork.transform.localPosition.y + 0.096, artWork.transform.position.z);
             //enterButton.ChangeButtonColor_yellow();
             //clearButton.ChangeButtonColor_yellow();

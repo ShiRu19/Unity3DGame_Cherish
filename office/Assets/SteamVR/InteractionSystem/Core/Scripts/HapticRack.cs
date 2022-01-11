@@ -11,22 +11,22 @@ using System.Collections;
 namespace Valve.VR.InteractionSystem
 {
 	//-------------------------------------------------------------------------
-	[RequireComponent( typeof( Interactable ) )]
+	[RequireComponent(typeof(Interactable))]
 	public class HapticRack : MonoBehaviour
 	{
-		[Tooltip( "The linear mapping driving the haptic rack" )]
+		[Tooltip("The linear mapping driving the haptic rack")]
 		public LinearMapping linearMapping;
 
-		[Tooltip( "The number of haptic pulses evenly distributed along the mapping" )]
+		[Tooltip("The number of haptic pulses evenly distributed along the mapping")]
 		public int teethCount = 128;
 
-		[Tooltip( "Minimum duration of the haptic pulse" )]
+		[Tooltip("Minimum duration of the haptic pulse")]
 		public int minimumPulseDuration = 500;
 
-		[Tooltip( "Maximum duration of the haptic pulse" )]
+		[Tooltip("Maximum duration of the haptic pulse")]
 		public int maximumPulseDuration = 900;
 
-		[Tooltip( "This event is triggered every time a haptic pulse is made" )]
+		[Tooltip("This event is triggered every time a haptic pulse is made")]
 		public UnityEvent onPulse;
 
 		private Hand hand;
@@ -35,7 +35,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Awake()
 		{
-			if ( linearMapping == null )
+			if (linearMapping == null)
 			{
 				linearMapping = GetComponent<LinearMapping>();
 			}
@@ -43,14 +43,14 @@ namespace Valve.VR.InteractionSystem
 
 
 		//-------------------------------------------------
-		private void OnHandHoverBegin( Hand hand )
+		private void OnHandHoverBegin(Hand hand)
 		{
 			this.hand = hand;
 		}
 
 
 		//-------------------------------------------------
-		private void OnHandHoverEnd( Hand hand )
+		private void OnHandHoverEnd(Hand hand)
 		{
 			this.hand = null;
 		}
@@ -59,8 +59,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Update()
 		{
-			int currentToothIndex = Mathf.RoundToInt( linearMapping.value * teethCount - 0.5f );
-			if ( currentToothIndex != previousToothIndex )
+			if (linearMapping == null) return;
+			int currentToothIndex = Mathf.RoundToInt(linearMapping.value * teethCount - 0.5f);
+			if (currentToothIndex != previousToothIndex)
 			{
 				Pulse();
 				previousToothIndex = currentToothIndex;
@@ -71,10 +72,10 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void Pulse()
 		{
-			if ( hand && (hand.isActive) && ( hand.GetBestGrabbingType() != GrabTypes.None ) )
+			if (hand && (hand.isActive) && (hand.GetBestGrabbingType() != GrabTypes.None))
 			{
-				ushort duration = (ushort)Random.Range( minimumPulseDuration, maximumPulseDuration + 1 );
-				hand.TriggerHapticPulse( duration );
+				ushort duration = (ushort)Random.Range(minimumPulseDuration, maximumPulseDuration + 1);
+				hand.TriggerHapticPulse(duration);
 
 				onPulse.Invoke();
 			}
